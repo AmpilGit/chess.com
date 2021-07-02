@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Collections.Generic;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -14,24 +15,22 @@ namespace chess.com
             {
                 for (int j = 0; j < 8; j++)
                 {
-                    
+
                     var bor = new Button();
                     bor.Click += Active;
                     bor.Height = 100;
                     bor.Width = 100;
                     bor.Background = Brushes.Yellow;
-                    
+
                     count += 1;
-                    if ((count) % 2 == 0) 
-                    { 
-                        bor.Background = Brushes.Red; 
+                    if ((count) % 2 == 0)
+                    {
+                        bor.Background = Brushes.Red;
                     }
                     Grid.SetRow(bor, i);
                     Grid.SetColumn(bor, j);
-                    
-                    stack.Children.Add(bor);
-                    
 
+                    stack.Children.Add(bor);
                 }
                 count += 1;
             }
@@ -44,138 +43,239 @@ namespace chess.com
             Cell(6, 0); Cell(6, 1); Cell(6, 2); Cell(6, 3); Cell(6, 4); Cell(6, 5); Cell(6, 6); Cell(6, 7);
             Cell(7, 0); Cell(7, 1); Cell(7, 2); Cell(7, 3); Cell(7, 4); Cell(7, 5); Cell(7, 6); Cell(7, 7);
         }
-        public static string[,] figures = new string[8, 8]
-        {
-            {"чладья","чконь","чслон","чферзь","чкороль","чслон","чконь","чладья" },
-            {"чпешка","чпешка","чпешка","чпешка","чпешка","чпешка","чпешка","чпешка" },
-            {null,null,null,null,null,null,null,null},
-            {null,null,null,null,null,null,null,null},
-            {null,null,null,null,null,null,null,null},
-            {null,null,null,null,null,null,null,null},
-            {"бпешка","бпешка","бпешка","бпешка","бпешка","бпешка","бпешка","бпешка" },
-            {"бладья","бконь","бслон","бферзь","бкороль","бслон","бконь","бладья" },
 
-        };
-        public void Cell(int i,int j)
+        public void Cell(int i, int j)
         {
             //класс для расстановки фигур
             Image img = new Image();
             img.Height = 100;
             img.Width = 100;
             img.MouseDown += Active;
-            
-                    string name = figures[i, j];
-                    if (name == "чпешка")
-                    {
-                        img.Name = "чпешка";
-                        img.Source = new BitmapImage(new System.Uri("pack://application:,,,/Resources/чпешка.png"));
-                    }
-                    if (name == "бпешка")
-                    {
-                        img.Name = "бпешка";
-                        img.Source = new BitmapImage(new System.Uri("pack://application:,,,/Resources/бпешка.png"));
-                    }
-                    if (name == "бконь")
-                    {
-                        img.Name = "бконь";
-                        img.Source = new BitmapImage(new System.Uri("pack://application:,,,/Resources/бконь.png"));
-                    }
-                    if (name == "чконь")
-                    {
-                        img.Name = "чконь";
-                        img.Source = new BitmapImage(new System.Uri("pack://application:,,,/Resources/чконь.jpg"));
-                    }
-                    if (name == "бслон")
-                    {
-                        img.Name = "бслон";
-                        img.Source = new BitmapImage(new System.Uri("pack://application:,,,/Resources/бслон.jpg"));
-                    }
-                    if (name == "чслон")
-                    {
-                        img.Name = "чслон";
-                        img.Source = new BitmapImage(new System.Uri("pack://application:,,,/Resources/чслон.jpeg"));
-                    }
-                    if (name == "бладья")
-                    {
-                        img.Name = "бладья";
-                        img.Source = new BitmapImage(new System.Uri("pack://application:,,,/Resources/бладья.jpg"));
-                    }
-                    if (name == "чладья")
-                    {
-                        img.Name = "чладья";
-                        img.Source = new BitmapImage(new System.Uri("pack://application:,,,/Resources/чладья.jpg"));
-                    }
-                    if (name == "бкороль")
-                    {
-                        img.Name = "бкороль";
-                        img.Source = new BitmapImage(new System.Uri("pack://application:,,,/Resources/бкороль.jpeg"));
-                    }
-                    if (name == "чкороль")
-                    {
-                        img.Name = "чкороль";
-                        img.Source = new BitmapImage(new System.Uri("pack://application:,,,/Resources/чкороль.jpg"));
-                    }
-                    if (name == "бферзь")
-                    {
-                        img.Name = "бферзь";
-                        img.Source = new BitmapImage(new System.Uri("pack://application:,,,/Resources/бферзь.jpeg"));
-                    }
-                    if (name == "чферзь")
-                    {
-                        img.Name = "чферзь";
-                        img.Source = new BitmapImage(new System.Uri("pack://application:,,,/Resources/чферзь.jpg"));
-                    }
-                    Grid.SetRow(img, i);
-                    Grid.SetColumn(img, j);
-                    stack.Children.Add(img);
-                    
+
+            string name = figuresarr.figures[i, j];
+            if (name == "чпешка")
+            {
+                img.Name = "чпешка";
+                img.Source = new BitmapImage(new System.Uri("pack://application:,,,/Resources/чпешка.png"));
+            }
+            if (name == "бпешка")
+            {
+                img.Name = "бпешка";
+                img.Source = new BitmapImage(new System.Uri("pack://application:,,,/Resources/бпешка.png"));
+            }
+            if (name == "бконь")
+            {
+                img.Name = "бконь";
+                img.Source = new BitmapImage(new System.Uri("pack://application:,,,/Resources/бконь.png"));
+            }
+            if (name == "чконь")
+            {
+                img.Name = "чконь";
+                img.Source = new BitmapImage(new System.Uri("pack://application:,,,/Resources/чконь.jpg"));
+            }
+            if (name == "бслон")
+            {
+                img.Name = "бслон";
+                img.Source = new BitmapImage(new System.Uri("pack://application:,,,/Resources/бслон.jpg"));
+            }
+            if (name == "чслон")
+            {
+                img.Name = "чслон";
+                img.Source = new BitmapImage(new System.Uri("pack://application:,,,/Resources/чслон.jpeg"));
+            }
+            if (name == "бладья")
+            {
+                img.Name = "бладья";
+                img.Source = new BitmapImage(new System.Uri("pack://application:,,,/Resources/бладья.jpg"));
+            }
+            if (name == "чладья")
+            {
+                img.Name = "чладья";
+                img.Source = new BitmapImage(new System.Uri("pack://application:,,,/Resources/чладья.jpg"));
+            }
+            if (name == "бкороль")
+            {
+                img.Name = "бкороль";
+                img.Source = new BitmapImage(new System.Uri("pack://application:,,,/Resources/бкороль.jpeg"));
+                bkorol = img;
+            }
+            if (name == "чкороль")
+            {
+                img.Name = "чкороль";
+                img.Source = new BitmapImage(new System.Uri("pack://application:,,,/Resources/чкороль.jpg"));
+                chkorol = img;
+            }
+            if (name == "бферзь")
+            {
+                img.Name = "бферзь";
+                img.Source = new BitmapImage(new System.Uri("pack://application:,,,/Resources/бферзь.jpeg"));
+            }
+            if (name == "чферзь")
+            {
+                img.Name = "чферзь";
+                img.Source = new BitmapImage(new System.Uri("pack://application:,,,/Resources/чферзь.jpg"));
+            }
+            Grid.SetRow(img, i);
+            Grid.SetColumn(img, j);
+            stack.Children.Add(img);
+
         }
         public static bool flag = false;//переменная для проверки второго нажатия на клетку
-        public static object figure;
+        public static dynamic figure;
         public static object figure2;
-        private void Active(object sender, RoutedEventArgs e)
+        public static Image chkorol;
+        public static Image bkorol;
+        public static int counterchahch = 0;
+        public static bool chah;
+        public static void chek(string text)
         {
+            MessageBox.Show(text);
+        }
+        private void Active(object sender, RoutedEventArgs e)
+        {// обработка шаха область
+
+            //обработка шаха конец сначала для черных
             if (flag)
             {
+                //code for copy main massive in not static massive
+                string[,] massdo= new string[8,8];
+                for (int i = 0; i < 8; i++)
+                {
+                    for (int j = 0; j < 8; j++)
+                    {
+                        massdo[i, j] = figuresarr.figures[i, j];
+                    }
+                }
+                //
                 firstpos = sender;
-                rules(figure,firstpos);
-                if(sender is Image && mogno) 
-                { var ii = sender as Image;
-                    
+                //the bool for possible move
+                bool mogno = false;
+                //bool for chah
+                chah = false;
+                //для обработки шаха надо отправить сначала координаты фигуры то есть пройтись по массиву  и для каждой фигуры обработать его в методе бшах 
+                //и для этого мне надо отправить координаты фигуры в массиве и ее имя, но перед этим мне надо обновить локальный массив который я и отправлю и
+                // внутри этого массива сделать так что типа был ход уже совершен и проверить есть шах а для проверки шаха все буду отправлять в метод и так 
+                //начнем с того что я изменю массив под ход игрока и походу мне придется создавать новые классы специально для этого действия
+                int xrowforchah = Grid.GetRow(figure);
+                int ycolumnforchah = Grid.GetColumn(figure);
+                int x2rowforchah = Grid.GetRow(firstpos);
+                int y2rowforchah = Grid.GetColumn(firstpos);
+                string chahfigurename = figuresarr.figures[xrowforchah, ycolumnforchah];
+                mogno = rulesmain.rules(figure, firstpos, figuresarr.figures, 0);
+                if (hody.hodch)//this code for black moves
+                {
+                    if (mogno)
+                    {
+                        int xforchcorol = 0;
+                        int yforchkorol = 0;
+                        massdo[xrowforchah, ycolumnforchah] = null;
+                        massdo[x2rowforchah, y2rowforchah] = chahfigurename;
+                        //searching black king
+                        for (int i = 0; i < 8; i++)
+                        {
+                            for (int j = 0; j < 8; j++)
+                            {
+                                if (massdo[i, j] == "чкороль")
+                                {
+                                    xforchcorol = i;
+                                    yforchkorol = j;
+                                }
+                            }
+                        }
+                        //отправляю координаты черного короля и проверяю есть ли шах так как я типо уже сделал ход но только внутри не главного массива и там их обрабатываю
+                        for (int i = 0; i < 8; i++)
+                        {
+                            if (chah) { break; }//break code if chah else it is dont work it is very important
+                            for (int j = 0; j < 8; j++)
+                            {
+                                string cvetofigureinmassdo = "";
+                                if (massdo[i, j] != null)
+                                { cvetofigureinmassdo = massdo[i, j].Substring(0, 1); }
+                                string nameofigureinmassdo = massdo[i, j];
+                                if (cvetofigureinmassdo == "б")
+                                {
+                                    //сначала отправляю координаты короля потом отправляю имя фигуры и ее координаты то есть i j и конечно массив massdo
+                                    chah = chahblack.rules(xforchcorol, yforchkorol, nameofigureinmassdo, i, j, massdo);
+                                    if (chah)
+                                    {
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+
+                          // теперь надо рекурсивно пройтись по всем фигурам и проверить будет ли шах если все вернут шах то значит на доске мат
+                          // сначала проверю ход на возможность потом проверю на шах и если шаха не будет выйду из цикла и 
+                          // я только сейчас осознал что надо сделать расчет мата после проверки шаха а не внутри него потому что код шаха проверяет и походу придется проверку шаха сделать прям в конце всего этого
+                          // потому что я должен проверять мат не при следующем ходе а в конце этого и так как мне это сделать получается мне надо будет проверить на шах при ходе противоложной стороны типа проверить бьет ли фигура черных белого короля и 
+                          // потом проверить будет ли мат и если нет то мы идем дальше а если да то высвечиваем окошко что на доске мат
+                    }
+                }
+                if (hody.hodb)//for white moves
+                {
+                    if (mogno)
+                    {
+                        int xforchcorol = 0;
+                        int yforchkorol = 0;
+                        massdo[xrowforchah, ycolumnforchah] = null;
+                        massdo[x2rowforchah, y2rowforchah] = chahfigurename;
+                        for (int i = 0; i < 8; i++)
+                        {
+                            for (int j = 0; j < 8; j++)
+                            {
+                                if (massdo[i, j] == "бкороль")
+                                {
+                                    xforchcorol = i;
+                                    yforchkorol = j;
+                                }
+                            }
+                        }
+                        //отправляю координаты черного короля и проверяю есть ли шах так как я типо уже сделал ход но только внутри не главного массива и там их обрабатываю
+                        for (int i = 0; i < 8; i++)
+                        {
+                            if (chah) { break; }
+                            for (int j = 0; j < 8; j++)
+                            {
+                                string cvetofigureinmassdo = "";
+                                if (massdo[i, j] != null)
+                                { cvetofigureinmassdo = massdo[i, j].Substring(0, 1); }
+                                string nameofigureinmassdo = massdo[i, j];
+                                if (cvetofigureinmassdo == "ч")
+                                {
+                                    //сначала отправляю координаты короля потом отправляю имя фигуры и ее координаты то есть i j и конечно массив massdo
+                                    chah = chahwhite.rules(xforchcorol, yforchkorol, nameofigureinmassdo, i, j, massdo);
+                                    if (chah)
+                                    {
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                if (sender is Image && mogno && chah == false)//this code for click on figure(image) because my chess area is buttons
+                {
+                    hody.hodch = !hody.hodch;//perestanovka hodov if move is possible
+                    hody.hodb = !hody.hodb;
+                    var ii = sender as Image;
+
                     int column = Grid.GetColumn(ii);
                     int row = Grid.GetRow(ii);
                     stack.Children.Remove(ii);
-                    
                     var figurecopy = figure as Image;
-                    string name = figurecopy.Name;
+                    int columnfigure = Grid.GetColumn(figurecopy);
+                    int rowfigure = Grid.GetRow(figurecopy);
                     var figuredelete = figure as Image;
                     stack.Children.Remove(figuredelete);
-                    if (bferz) 
-                    {
-                        figurecopy.Source= new BitmapImage(new System.Uri("pack://application:,,,/Resources/бферзь.jpeg"));
-                        Grid.SetColumn(figurecopy, column);
-                        Grid.SetRow(figurecopy, row);
-                        stack.Children.Add(figurecopy);
-                        bferz = false;
-                    }
-                    else 
-                    {
-                        Grid.SetColumn(figurecopy, column);
-                        Grid.SetRow(figurecopy, row);
-                        stack.Children.Add(figurecopy);
-                    }
-                    forbor();
-                }
-                if(sender is Button && mogno)
-                { var ii = sender as Button;
-                    var figurecopy = figure as Image;
-                    int row = Grid.GetRow(ii);
-                    int column = Grid.GetColumn(ii);
-                    var figuredelete = figure as Image;
-                    stack.Children.Remove(figuredelete);
-                    if (bferz)
+                    if (figurecopy.Name == "бпешка") { figurecopy.Name = "бпешка2"; }
+                    if (figurecopy.Name == "чпешка") { figurecopy.Name = "чпешка2"; }
+                    if (figurecopy.Name == "бпешка2" && bpeshka1.bpeshkarule2(figure, firstpos, figuresarr.figures, 0))
                     {
                         figurecopy.Source = new BitmapImage(new System.Uri("pack://application:,,,/Resources/бферзь.jpeg"));
+                        figuresarr.figures[row, column] = "бферзь";
+                        figuresarr.figures[rowfigure, columnfigure] = null;
+                        figurecopy.Name = "бферзь";
                         Grid.SetColumn(figurecopy, column);
                         Grid.SetRow(figurecopy, row);
                         stack.Children.Add(figurecopy);
@@ -183,33 +283,102 @@ namespace chess.com
                     }
                     else
                     {
+                        if (figurecopy.Name == "чпешка2" && chpeshka1.bpeshkarule2(figure, firstpos, figuresarr.figures, 0))
+                        {
+                            figurecopy.Source = new BitmapImage(new System.Uri("pack://application:,,,/Resources/чферзь.jpg"));
+                            figurecopy.Name = "чферзь";
+                            figuresarr.figures[row, column] = "чферзь";
+                            figuresarr.figures[rowfigure, columnfigure] = null;
+                            Grid.SetColumn(figurecopy, column);
+                            Grid.SetRow(figurecopy, row);
+                            stack.Children.Add(figurecopy);
+                        }
+                        else
+                        {
+                            string namefigurecopy = figurecopy.Name;
+                            figuresarr.figures[row, column] = namefigurecopy;
+                            figuresarr.figures[rowfigure, columnfigure] = null;
+                            Grid.SetColumn(figurecopy, column);
+                            Grid.SetRow(figurecopy, row);
+                            stack.Children.Add(figurecopy);
+                        }
+                    }
+                    bool matwhite1 = mat.matforwhite();
+                    if (matwhite1) { MessageBox.Show("WHITE DEFEATED"); }
+                    mogno = false;
+                    forbor();
+                   
+                }
+                if (sender is Button && mogno && chah == false)
+                {
+                    hody.hodch = !hody.hodch;
+                    hody.hodb = !hody.hodb;
+                    var ii = sender as Button;
+                    var figurecopy = figure as Image;
+                    int row = Grid.GetRow(ii);
+                    int column = Grid.GetColumn(ii);
+                    var figuredelete = figure as Image;
+                    int columnfigure = Grid.GetColumn(figurecopy);
+                    int rowfigure = Grid.GetRow(figurecopy);
+                    stack.Children.Remove(figuredelete);
+
+                    if (figurecopy.Name == "бпешка") { figurecopy.Name = "бпешка2"; }
+                    if (figurecopy.Name == "чпешка") { figurecopy.Name = "чпешка2"; }
+                    if (figurecopy.Name == "бпешка2" && bpeshka1.bpeshkarule2(figure, firstpos, figuresarr.figures, 0))
+                    {
+                        figurecopy.Source = new BitmapImage(new System.Uri("pack://application:,,,/Resources/бферзь.jpeg"));
+                        figuresarr.figures[row, column] = "бферзь";
+                        figuresarr.figures[rowfigure, columnfigure] = null;
+                        figurecopy.Name = "бферзь";
                         Grid.SetColumn(figurecopy, column);
                         Grid.SetRow(figurecopy, row);
                         stack.Children.Add(figurecopy);
+                        bferz = false;
                     }
+                    else
+                    {
+                        if (figurecopy.Name == "чпешка2" && chpeshka1.bpeshkarule2(figure, firstpos, figuresarr.figures, 0))
+                        {
+                            figurecopy.Source = new BitmapImage(new System.Uri("pack://application:,,,/Resources/чферзь.jpg"));
+                            figurecopy.Name = "чферзь";
+                            figuresarr.figures[row, column] = "чферзь";
+                            figuresarr.figures[rowfigure, columnfigure] = null;
+                            Grid.SetColumn(figurecopy, column);
+                            Grid.SetRow(figurecopy, row);
+                            stack.Children.Add(figurecopy);
+                        }
+                        else
+                        {
+                            string namefigurecopy = figurecopy.Name;
+                            figuresarr.figures[row, column] = namefigurecopy;
+                            figuresarr.figures[rowfigure, columnfigure] = null;
+                            Grid.SetColumn(figurecopy, column);
+                            Grid.SetRow(figurecopy, row);
+                            stack.Children.Add(figurecopy);
+                        }
+                    }
+                    mogno = false;
                     forbor();
+                    
+
                 }
-                
+                bool matwhite = mat.matforwhite();
+                if (matwhite) { MessageBox.Show("WHITE DEFEATED"); }
                 flag = false;
                 forbor();
             }
-            else {
-                if (sender is Image) 
+            else
+            {
+                if (sender is Image)
                 {
-                    
-                    ActiveSecond(sender); 
-                } 
+                    ActiveSecond(sender);
+                }
             }
-            
+
         }
         public static object bor1;
-        public static object firstpos;
+        public static dynamic firstpos;
         public static bool bferz;
-        public void forfigure()
-        {
-            var figure1 = figure as Image;
-            stack.Children.Remove(figure1);
-        }
         public void forbor()
         {
             var bor11 = bor1 as Button;
@@ -217,168 +386,40 @@ namespace chess.com
         }
         public void ActiveSecond(object sender)
         {
-                var ii = sender as Image;
-                string iiname = ii.Name;
-                var source = ii.Source;
-                int row = Grid.GetRow(ii);
-                int column = Grid.GetColumn(ii);
-                var bor = new Button();
-                bor.Height = 100;
+            var ii = sender as Image;
+            string iiname = ii.Name;
+            var source = ii.Source;
+            int row = Grid.GetRow(ii);
+            int column = Grid.GetColumn(ii);
+            var bor = new Button();
+            bor.Height = 100;
 
-                bor.Name = "delete";
-                bor.Click += Active;
-                bor.Width = 100;
-                bor.BorderThickness = new Thickness(5);
-                bor.Background = new SolidColorBrush(Colors.White) { Opacity = 0 };
-                bor.BorderBrush = new SolidColorBrush(Colors.Blue);
-                bor1 = bor;
-                stack.Children.Remove(ii);
-                Image img = new Image();
-                img.Source = source;
-                img.Name = iiname;
-                img.MouseDown += Active;
-                img.Height = 100;
-                img.Width = 100;
-                
-                figure = img;
-                Grid.SetRow(bor, row);
-                Grid.SetColumn(bor, column);
-                Grid.SetRow(img, row);
-                Grid.SetColumn(img, column);
-                stack.Children.Add(bor);
-                stack.Children.Add(img);
+            bor.Name = "delete";
+            bor.Click += Active;
+            bor.Width = 100;
+            bor.BorderThickness = new Thickness(5);
+            bor.Background = new SolidColorBrush(Colors.White) { Opacity = 0 };
+            bor.BorderBrush = new SolidColorBrush(Colors.Blue);
+            bor1 = bor;
+            stack.Children.Remove(ii);
+            Image img = new Image();
+            img.Source = source;
+            img.Name = iiname;
+            img.MouseDown += Active;
+            img.Height = 100;
+            img.Width = 100;
+
+            figure = img;
+            Grid.SetRow(bor, row);
+            Grid.SetColumn(bor, column);
+            Grid.SetRow(img, row);
+            Grid.SetColumn(img, column);
+            stack.Children.Add(bor);
+            stack.Children.Add(img);
             flag = true;
         }
-        public void transport(object sender)
-        {
-            
-            
-        }
-        public static bool mogno;
-        public static bool forferz;
-        public void rules(object sender, object secondsender)
-        {
-            var figurerules = sender as Image;
-            var button=new Button();
-            var image = new Image();
-            if (secondsender is Image) 
-            {
-                image = secondsender as Image;
-                if (figurerules.Name == "бферзь")
-                {
-                    int x = Grid.GetRow(figurerules);//ширина
-                    int y = Grid.GetColumn(figurerules);//высота начиная сверху
-                    int x2 = Grid.GetRow(image);
-                    int y2 = Grid.GetColumn(image);
-                    mogno = false;
-                    int x3 = x2 - x;
-                    int y3 = y2 - y;
-                    int xcopy = x;
-                    if (x3 > 0 && y==y2) //если x3 больше нуля значит я переместил фигуру вправо и не меняя высоту 
-                    {
-                        int count = 0;
-                            while (xcopy != x2)
-                            {
-                                xcopy += 1;//надо вычитать если фигура перемещается влево
-                                if (figures[xcopy, y] != null)
-                                {
-                                count += 1;
-                                }
-                            }
-                        if (count == 0)
-                        {
-                            if (x == x2 || y == y2 || x3 == y3 || x3 == y3 * (-1))
-                            {
-                                figurerules.Name = "бферзь";
-                                figures[x, y] = null;
-                                figures[x2, y2] = "бферзь";
-                                mogno = true;
-                            }
-                        }
-                    }
-                    if (y3 > 0)
-                    {
 
-                    }
-                    else 
-                    { 
 
-                    }
-                    
-                }
-                if (figurerules.Name == "бпешка" || figurerules.Name == "бпешка2")
-                {
-                    int x = Grid.GetRow(figurerules);
-                    int y = Grid.GetColumn(figurerules);
-                    int x2 = Grid.GetRow(image);
-                    int y2 = Grid.GetColumn(image);
-                    mogno = false;
-                    if (x - 1 == x2 && (y + 1 == y2 || y - 1 == y2))
-                    {
-                        figures[x, y] = null;
-                        figures[x2, y2] = "бпешка";
-                        mogno = true;
-                        if (x2 == 0)
-                        {
-                            figurerules.Name = "бферзь";
-                            figures[x, y] = null;
-                            figures[x2, y2] = "бферзь";
-                            bferz = true;
-                        }
-                    }
-
-                }
-            }
-            if (secondsender is Button)
-            {
-                button = secondsender as Button;
-                if (figurerules.Name == "бпешка"|| figurerules.Name == "бпешка2")
-                {
-                    int x = Grid.GetRow(figurerules);
-                    int y = Grid.GetColumn(figurerules);
-                    int x2 = Grid.GetRow(button);
-                    int y2 = Grid.GetColumn(button);
-                    if (figurerules.Name == "бпешка2")
-                    {
-
-                        if (x - 1 == x2 && y == y2)
-                        {
-                            figures[x, y] = null;
-                            figures[x2, y2] = "бпешка";
-                            mogno = true;
-                            if (x2 == 0)
-                            {
-                                figurerules.Name = "бферзь";
-                                figures[x, y] = null;
-                                figures[x2, y2] = "бферзь";
-                                bferz = true;
-                            }
-                        }
-                        else
-                        {
-                            mogno = false;
-                        }
-                    }
-                    if (figurerules.Name == "бпешка")
-                    {
-                        if ((x - 1 == x2 && y == y2) || (x - 2 == x2 && y == y2))
-                        {
-                            mogno = true;
-                            figures[x, y] = null;
-                            figures[x2, y2] = "бпешка";
-                            figurerules.Name = "бпешка2";
-                        }
-                        else
-                        {
-                            mogno = false;
-                        }
-                    }
-
-                }
-            }
-
-            
-        }
     }
 
 

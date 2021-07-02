@@ -64,12 +64,42 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="bferz - Копировать.cs" />
+    <Compile Include="bferz2.cs" />
+    <Compile Include="bkon - Копировать.cs" />
+    <Compile Include="bkon2.cs" />
+    <Compile Include="bkorol - Копировать.cs" />
+    <Compile Include="bkorol2.cs" />
+    <Compile Include="blad - Копировать.cs" />
+    <Compile Include="blad2.cs" />
+    <Compile Include="bpeshka - Копировать.cs" />
+    <Compile Include="bpeshka2.cs" />
+    <Compile Include="bslon - Копировать.cs" />
+    <Compile Include="bslon2.cs" />
+    <Compile Include="chahblack.cs" />
+    <Compile Include="chahwhite.cs" />
+    <Compile Include="chferz - Копировать.cs" />
+    <Compile Include="chferz2.cs" />
+    <Compile Include="chkon - Копировать.cs" />
+    <Compile Include="chkon2.cs" />
+    <Compile Include="chkorol - Копировать.cs" />
+    <Compile Include="chkorol2.cs" />
+    <Compile Include="chlad - Копировать.cs" />
+    <Compile Include="chlad2.cs" />
+    <Compile Include="chpeshka - Копировать.cs" />
+    <Compile Include="chpeshka2.cs" />
+    <Compile Include="chslon - Копировать.cs" />
+    <Compile Include="chslon2.cs" />
+    <Compile Include="Class1.cs" />
+    <Compile Include="figuresarr.cs" />
+    <Compile Include="hody.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="mat.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
